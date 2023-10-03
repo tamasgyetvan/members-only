@@ -5,7 +5,7 @@ const authorizationController = require("../controllers/authorizationControllers
 
 //Home Page route
 router.get("/", (req, res) => {
-    res.render("index")
+    res.render("index", {user: req.user})
 })
 
 //Authorization routes

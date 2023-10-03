@@ -2,15 +2,23 @@ const { body, validationResult } = require("express-validator");
 const User = require("../models/user")
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs")
+const passport = require('passport')
 
 exports.login_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Login Get reques");
+    res.render("login")
 });
-exports.login_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Login Post request");
-});
+exports.login_post = passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/"
+})
+
 exports.logout = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Logout");
+    req.logout((err) => {
+        if (err) {
+            return next(err)
+        }
+        res.redirect("/")
+    })
 });
 exports.signup_get = asyncHandler(async (req, res, next) => {
     res.render("signup");

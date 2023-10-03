@@ -2,6 +2,12 @@ extends layout
 
 block content
 
-    div#index-container
-        a(href="/login") Login
-        a(href="/signup") Signup
+
+    if user
+        h1=user.username
+        h1 Successful login!
+        a(href="/logout") Logout
+    else 
+        div#index-container
+            a(href="/login") Login
+            a(href="/signup") Signup
