@@ -21,7 +21,8 @@ block content
             input#lastname(type="text", name="lastname" value=((user != null) ? user.lastname : ""))
         button#registerBtn Register
     
+
     if errors
-        ul 
+        ul
             for error in errors
                 li!= error.msg

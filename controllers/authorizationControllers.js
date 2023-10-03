@@ -1,6 +1,7 @@
 const { body, validationResult } = require("express-validator");
 const User = require("../models/user")
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcryptjs")
 
 exports.login_get = asyncHandler(async (req, res, next) => {
     res.send("NOT IMPLEMENTED: Login Get reques");
@@ -19,11 +20,9 @@ exports.signup_post = [
             .isLength({min: 5, max: 25})
             .withMessage("Username length should be within 5-25 characters!")
             .trim()
-            .escape(),
-
-        body("password")
-            .isLength({min: 8, max: 15})
-            .withMessage("Password should contain 8-15 characters!")
+            .escape(),            
+        body("password", "Password is required!")
+            .notEmpty()
             .trim()
             .escape(),
 
@@ -42,26 +41,28 @@ exports.signup_post = [
             .escape(),
 
         asyncHandler(async(req, res, next) => {
-            const errors = validationResult(req)
-            const user = new User({
+            
+            bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+                const errors = validationResult(req)
+                const user = new User({
                 username: req.body.username,
-                password: req.body.password,
+                password: hashedPassword,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname
-            })
-
-            if (!errors.isEmpty()) {
-                res.render("signup", {
-                    errors: errors.array(),
-                    user: user
                 })
-                return;
-            } else {
-                await user.save()
-                res.redirect("/")
-            }
+             
+                if (!errors.isEmpty()) {
+                    res.render("signup", {
+                        errors: errors.array(),
+                        user: user
+                    })
+                    return;
+                } else {                    
+                    await user.save()
+                    res.redirect("/")            
+                }              
+              });           
         })
-        
 ]
 
 
