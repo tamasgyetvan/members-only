@@ -5,6 +5,7 @@ const UserSchema = new Schema({
     username: {
         type: String,
         required: true,
+        minLength: 5,
         maxLength: 25,
     },
     password: {
@@ -13,12 +14,12 @@ const UserSchema = new Schema({
         minLength: 8, 
         maxLength: 15
     },
-    first_name: {
+    firstname: {
         type: String,
         required: true,
         maxLength: 100
     },
-    last_name: {
+    lastname: {
         type: String,
         required: true,
         maxLength: 100
@@ -36,3 +37,5 @@ UserSchema.virtual("url").get(function() {
     
     return `/members/users/${this._id}`;
 })
+
+module.exports = mongoose.model("User", UserSchema);

@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-
 const authorizationController = require("../controllers/authorizationControllers")
-//Authorization routes
 
+//Home Page route
 router.get("/", (req, res) => {
     res.render("index")
 })
 
+//Authorization routes
 router.get("/login", authorizationController.login_get)
 router.post("/login", authorizationController.login_post)
 
