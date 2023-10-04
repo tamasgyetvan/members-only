@@ -1,10 +1,8 @@
 extends layout 
 
 block content 
-
     h1 Login
     form#loginform(method="POST" action="")
-
         label(for="username") Username:
         input#username(type="text", name="username" value=((user != null) ? user.username : ""))
 
@@ -13,8 +11,7 @@ block content
 
         button#registerBtn Log in
     
+    a(href="/") Go back
 
     if errors
-        ul
-            for error in errors
-                li!= error.msg
+        h1 UASD

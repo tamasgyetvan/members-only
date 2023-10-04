@@ -14,14 +14,15 @@ block content
         label(for="confirmPassword") Confirm Password:
         input#confirmPassword(type="password", name="confirmPassword")
 
-        div#personal
-            label(for="firstname") First Name:
-            input#firstname(type="text", name="firstname" value=((user != null) ? user.firstname : ""))
-            label(for="lastname") Last name:
-            input#lastname(type="text", name="lastname" value=((user != null) ? user.lastname : ""))
+        label(for="firstname") First Name:
+        input#firstname(type="text", name="firstname" value=((user != null) ? user.firstname : ""))
+
+        label(for="lastname") Last name:
+        input#lastname(type="text", name="lastname" value=((user != null) ? user.lastname : ""))
+
         button#registerBtn Register
     
-
+    a(href="/") Go back
     if errors
         ul
             for error in errors

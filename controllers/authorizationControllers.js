@@ -5,12 +5,17 @@ const bcrypt = require("bcryptjs")
 const passport = require('passport')
 
 exports.login_get = asyncHandler(async (req, res, next) => {
-    res.render("login")
+    res.render("login", {
+        layout: "login"
+    })
 });
 exports.login_post = passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/"
-})
+        successRedirect: "/",
+        failureRedirect: "/login",
+    })
+  
+
+
 
 exports.logout = asyncHandler(async (req, res, next) => {
     req.logout((err) => {
@@ -21,7 +26,9 @@ exports.logout = asyncHandler(async (req, res, next) => {
     })
 });
 exports.signup_get = asyncHandler(async (req, res, next) => {
-    res.render("signup");
+    res.render("signup", {
+        layout: "signup"
+    });
 });
 exports.signup_post = [
         body("username")
@@ -61,6 +68,7 @@ exports.signup_post = [
              
                 if (!errors.isEmpty()) {
                     res.render("signup", {
+                        layout: "signup",
                         errors: errors.array(),
                         user: user
                     })
