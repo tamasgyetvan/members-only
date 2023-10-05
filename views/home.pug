@@ -1,21 +1,25 @@
 extends layout 
 block content 
 
-    table(class="messageBoard")
-        tr 
-            th Message 
-            th Created by
-            th Date
-            each message in messages 
-                tr(id = message.id class="messageCard")
-                    td
-                        p#title=message.title
-                        p#message=message.message
-                    td=message.user.username
-                    td=message.timestamp_formatted
-                    if currentuser.isAdmin === true
-                        td 
-                            form(method="POST", action=`/delete/${message.id}`)
-                                input#messageid(type="hidden", name="messageid")
-                                button#submitBtn Delete
-                        
+    if messages != undefined
+        table(class="messageBoard")
+            tr 
+                th Message 
+                th Created by
+                th Date
+                if currentuser.isAdmin === true 
+                    th Action
+                each message in messages
+                    tr(id = message.id class="messageCard")
+                        td
+                            p#title=message.title
+                            p#message=message.message
+                        td=message.user.username
+                        td=message.timestamp_formatted
+                        if currentuser.isAdmin === true
+                            td 
+                                form(method="POST", action=`/delete/${message.id}`)
+                                    input#messageid(type="hidden", name="messageid")
+                                    button#submitBtn Delete                       
+    else 
+        h3 No message to display at the moment.

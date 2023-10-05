@@ -11,3 +11,27 @@ form {
     gap: 0.5rem;
 }
 
+label {
+    font-size: 1.3rem;
+}
+input {
+    border-radius: 15px;
+    padding: 5px;
+    border: none;
+    background-color: #f0f0f0;
+}
+
+#submitBtn {
+    border-radius: 15px;
+    padding: 5px;
+    border: none;
+    background-color: orange;
+}
+
+a {
+    margin-top: 1rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
