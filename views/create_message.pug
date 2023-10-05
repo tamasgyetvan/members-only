@@ -7,7 +7,7 @@ block content
         input#title(type="text", name="title" value=((message != null) ? message.title : ""))
 
         label(for="message") Message:
-        input#message(type="textarea", name="message" value=((message != null) ? message.message : ""))
+        textarea#message(name="message" cols="20" rows="5" value=((message != null) ? message.message : ""))
 
         button#submitBtn Submit
     
@@ -17,4 +17,4 @@ block content
                 li!= error.msg
 
     
-    a(href="/") Go back
+    a(href="/home") Go back

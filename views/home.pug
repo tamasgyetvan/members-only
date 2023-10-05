@@ -1,4 +1,15 @@
 extends layout 
 block content 
 
-    h1=`Welcome back, ${user.username}`
+    table(class="messageBoard")
+        tr 
+            th Message 
+            th Created by 
+            th Date
+        each message in messages 
+            tr(class="messageCard")
+                td
+                    p#title=message.title
+                    p#message=message.message
+                td=message.user.username
+                td=message.timestamp

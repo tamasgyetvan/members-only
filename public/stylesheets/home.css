@@ -1,0 +1,28 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.messageBoard {
+    padding-top: 5rem;
+}
+
+.messageBoard th {
+    padding: 12px;
+    background-color: orange;
+    color: white;
+}
+
+.messageBoard td {
+    padding: 1rem;
+}
+.messageBoard tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#title {
+    font-size: 1.8rem;
+    font-weight: bolder;
+}
+

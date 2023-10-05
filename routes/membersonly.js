@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const Message = require("../models/message")
 const authorizationController = require("../controllers/authorizationControllers")
 const createMessageController = require("../controllers/createMessageController")
 
@@ -13,14 +13,16 @@ router.get("/", (req, res) => {
     })
 })
 
-router.get("/home", (req, res) => {
+router.get("/home", async (req, res) => {
     if (req.user === undefined) {
         res.redirect("/")
     } 
-
+    const messages = await Message.find({}).populate("user").exec()
+    console.log(messages)
     res.render("home", {
         user: req.user,
-        layout: "home"
+        layout: "home",
+        messages: messages,
     })
 })
 
