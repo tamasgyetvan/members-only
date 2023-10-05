@@ -7,7 +7,7 @@ const MessageSchema = new Schema({
         required: true,
         maxLength: 50,
     },
-    text: {
+    message: {
         type: String,
         required: true,
         maxLength: 100,
@@ -27,3 +27,5 @@ const MessageSchema = new Schema({
 MessageSchema.virtual("timestamp_formatted").get(function() {
     return DateTime.fromJSDate(this.timestamp).toLocaleString(DateTime.DATE_MED);
 })
+
+module.exports = mongoose.model("Message", MessageSchema);

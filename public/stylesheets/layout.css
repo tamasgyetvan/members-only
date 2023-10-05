@@ -19,11 +19,38 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style-type: none;
+}
+
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   text-align: center;
   background-color: orange;
   padding: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+header > h1 {
+  color: white;
+}
+
+nav > ul {
+  display: flex;
+  gap: 1rem;
+}
+
+.navlink {
+  color: white;
+  border-radius: 15px;
+  font-size: 1.6rem;
+  background-color: orange;
+  border: 2px solid white;
+  padding: 8px 20px;
+  text-align: center;
+  font-weight: bolder;
 }
 
 main {

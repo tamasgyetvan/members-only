@@ -8,6 +8,13 @@ html(lang='en')
   body
     header(class="header")
       h1(class="title") Members Only
+      if user 
+        nav 
+          ul 
+            li 
+              a(class="navlink" href="/create_message") Create Message
+            li
+              a(class="navlink" href="/logout") Logout
 
   main
     block content

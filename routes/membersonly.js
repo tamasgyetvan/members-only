@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const authorizationController = require("../controllers/authorizationControllers")
+const createMessageController = require("../controllers/createMessageController")
 
-//Home Page route
+//Index Page route
 router.get("/", (req, res) => {
     res.render("index", {
         user: req.user,
@@ -11,6 +12,20 @@ router.get("/", (req, res) => {
     
     })
 })
+
+router.get("/home", (req, res) => {
+    if (req.user === undefined) {
+        res.redirect("/")
+    } 
+
+    res.render("home", {
+        user: req.user,
+        layout: "home"
+    })
+})
+
+router.get("/create_message", createMessageController.create_message_get)
+router.post("/create_message", createMessageController.create_message_post)
 
 //Authorization routes
 router.get("/login", authorizationController.login_get)
