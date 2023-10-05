@@ -23,6 +23,11 @@ const UserSchema = new Schema({
         maxLength: 100
     },
 
+    isAdmin: {
+        type: Boolean,
+        default: false
+    }
+
 })
 
 UserSchema.virtual("fullname").get(function() {

@@ -3,7 +3,7 @@ extends layout
 block content
 
 
-    if user
+    if currentuser
         h1=user.username
         h1 Successful login!
         a(href="/logout") Logout
