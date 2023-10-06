@@ -28,7 +28,6 @@ router.get("/home", async (req, res) => {
 
 router.get("/create_message", MessageController.create_message_get)
 router.post("/create_message", MessageController.create_message_post)
-
 router.post("/delete/:messageId", MessageController.delete_message_post)
 
 //Authorization routes

@@ -9,14 +9,18 @@ exports.login_get = asyncHandler(async (req, res, next) => {
         layout: "login"
     })
 });
+
 exports.login_post = passport.authenticate("local", {
         successRedirect: "/home",
         failureRedirect: "/login",
-    })
-  
+        failureFlash: true
+})
+    
 
 
 
+
+    
 exports.logout = asyncHandler(async (req, res, next) => {
     req.logout((err) => {
         if (err) {
